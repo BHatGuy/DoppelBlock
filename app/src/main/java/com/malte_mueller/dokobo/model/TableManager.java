@@ -51,14 +51,13 @@ public class TableManager{
 
     public void saveTables(Context context){
         for (Table table: tables) {
-            String filename = table.getName();
+            String filename = table.getName() + ".dokobo";
             FileOutputStream outputStream;
             try {
                 outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
                 ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
                 objectOut.writeObject(table);
                 objectOut.close();
-                Log.d(TAG, "saveTables: " + context.getFilesDir().getAbsolutePath());
             } catch (Exception e) {
                 e.printStackTrace();
             }

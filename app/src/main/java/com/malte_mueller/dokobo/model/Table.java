@@ -43,9 +43,16 @@ public class Table implements Serializable {
         Integer[] score = new Integer[4];
         for (int i = 0; i < score.length; i++){
             if(g.isWinner(i)){
-                score[i] = prev[i] + g.getScore();
+                if ( !(g.getSolist() == i))
+                    score[i] = prev[i] + g.getScore();
+                else
+                    score[i] = prev[i] + 3 * g.getScore();
+
             } else {
-                score[i] = prev[i] - g.getScore();
+                if ( !(g.getSolist() == i))
+                    score[i] = prev[i] - g.getScore();
+                else
+                    score[i] = prev[i] - 3 * g.getScore();
             }
         }
         scores.add(score);

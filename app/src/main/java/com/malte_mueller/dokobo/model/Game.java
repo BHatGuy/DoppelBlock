@@ -25,4 +25,27 @@ public class Game implements Serializable {
     public int getScore(){
         return score;
     }
+
+    public boolean isSolo(){
+        int wc = 0;
+        for (boolean b : winners) {
+            if (b) wc++;
+        }
+        return wc == 1 || wc == 3;
+    }
+
+    public int getSolist(){
+        if (!isSolo()) return -1;
+        //count if more true or more false:
+        int trues = 0;
+        for (boolean b: winners){
+            if (b) trues++;
+        }
+        //search for the one with has the lesser count
+        boolean lookingFor = trues < winners.length-trues;
+        for (int i = 0; i < winners.length; i++){
+            if (winners[i] == lookingFor) return i;
+        }
+        return -1;
+    }
 }
