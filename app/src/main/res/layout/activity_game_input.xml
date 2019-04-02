@@ -67,7 +67,7 @@
         android:onClick="onGameSubmit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <EditText
         android:id="@+id/eT_gameValue"

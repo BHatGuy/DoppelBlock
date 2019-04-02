@@ -13,7 +13,7 @@ public class GameInputActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameinput);
+        setContentView(R.layout.activity_game_input);
 
         // your text box
         EditText valueInput = (EditText) findViewById(R.id.eT_gameValue);
