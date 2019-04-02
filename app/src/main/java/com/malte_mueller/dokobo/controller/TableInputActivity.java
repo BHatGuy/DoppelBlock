@@ -1,10 +1,11 @@
-package com.malte_mueller.dokobo;
+package com.malte_mueller.dokobo.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.malte_mueller.dokobo.R;
 import com.malte_mueller.dokobo.model.Table;
 import com.malte_mueller.dokobo.model.TableManager;
 
@@ -19,6 +20,7 @@ public class TableInputActivity extends AppCompatActivity {
     }
 
     public void onSubmit(View v){
+        //TODO: dynamic for more players?
         String[] players = new String[4];
         players[0] = ((EditText) findViewById(R.id.et_player1)).getText().toString();
         players[1] = ((EditText) findViewById(R.id.et_player2)).getText().toString();

@@ -1,4 +1,4 @@
-package com.malte_mueller.dokobo;
+package com.malte_mueller.dokobo.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.malte_mueller.dokobo.R;
 
 public class GameInputActivity extends AppCompatActivity {
 
