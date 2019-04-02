@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +14,8 @@ import com.malte_mueller.dokobo.model.Game;
 import com.malte_mueller.dokobo.model.TableManager;
 
 public class GameChartActivity extends AppCompatActivity {
+    private static final String TAG = GameChartActivity.class.getName();
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -23,7 +26,7 @@ public class GameChartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_chart);
-        recyclerView = (RecyclerView) findViewById(R.id.rw_games);
+        recyclerView = findViewById(R.id.rw_games);
 
 
         tableManager = TableManager.getInstance();
@@ -52,6 +55,7 @@ public class GameChartActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        Log.d(TAG, "onPostResume: ");
         mAdapter.notifyDataSetChanged();
     }
 

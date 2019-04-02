@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameInputActivity extends AppCompatActivity {
-    private static final String TAG = GameInputActivity.class.getName();
 
     private EditText scoreInput;
     private ToggleButton[] playerButtons;
@@ -57,8 +56,9 @@ public class GameInputActivity extends AppCompatActivity {
         }
 
         Game g = new Game(score, winners);
-        TableManager.getInstance().getActiveTable().addGame(g);
-
+        TableManager tm = TableManager.getInstance();
+        tm.getActiveTable().addGame(g);
+        tm.saveTables(getApplicationContext());
         finish();
     }
 }
