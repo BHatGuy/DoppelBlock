@@ -32,6 +32,7 @@ public class Table {
         games.add(g);
 
         // calculate score
+        //TODO: solos
         Integer[] prev = new Integer[4];
         if (scores.isEmpty()){
             for (int i = 0; i < prev.length; i++) {
@@ -53,5 +54,9 @@ public class Table {
 
     public List<Integer[]> getScores(){
         return scores;
+    }
+
+    public String[] getPlayers() {
+        return players;
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.malte_mueller.dokobo.R;
 import com.malte_mueller.dokobo.model.Game;
@@ -38,6 +39,13 @@ public class GameChartActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new GameRecyclerViewAdapter(tableManager.getActiveTable().getScores());
         recyclerView.setAdapter(mAdapter);
+
+        //TODO: Dynamic
+        String[] playerNames = tableManager.getActiveTable().getPlayers();
+        ((TextView) findViewById(R.id.player1)).setText(playerNames[0]);
+        ((TextView) findViewById(R.id.player2)).setText(playerNames[1]);
+        ((TextView) findViewById(R.id.player3)).setText(playerNames[2]);
+        ((TextView) findViewById(R.id.player4)).setText(playerNames[3]);
 
     }
 
