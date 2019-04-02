@@ -39,4 +39,8 @@ public class TableManager{
     public void setActiveTable(Table t){
         activeTable = tables.indexOf(t);
     }
+
+    public Table getActiveTable(){
+        return tables.get(activeTable);
+    }
 }

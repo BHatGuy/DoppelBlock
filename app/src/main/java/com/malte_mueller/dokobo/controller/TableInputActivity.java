@@ -1,5 +1,6 @@
 package com.malte_mueller.dokobo.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,5 +31,10 @@ public class TableInputActivity extends AppCompatActivity {
         Table t = new Table(name, players);
         tableManager.addTable(t);
         tableManager.setActiveTable(t);
+
+        //Create Intend to start the GameChartActivity
+        Intent intent = new Intent(this, GameChartActivity.class);
+        startActivity(intent);
+
     }
 }

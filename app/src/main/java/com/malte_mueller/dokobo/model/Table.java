@@ -21,4 +21,8 @@ public class Table {
     public String toString(){
         return name;
     }
+
+    public List<Game> getGames() {
+        return games;
+    }
 }
