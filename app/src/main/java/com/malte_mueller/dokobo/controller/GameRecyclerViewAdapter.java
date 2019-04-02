@@ -1,6 +1,7 @@
 package com.malte_mueller.dokobo.controller;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.malte_mueller.dokobo.R;
 
 import com.malte_mueller.dokobo.model.Game;
+import com.malte_mueller.dokobo.model.TableManager;
 
 import java.util.List;
 
@@ -18,6 +20,8 @@ import java.util.List;
  * TODO: Replace the implementation with code for your data type.
  */
 public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerViewAdapter.ViewHolder> {
+    private static final String TAG = GameRecyclerViewAdapter.class.getName();
+
 
     private final List<Game> mValues;
     //private final OnListFragmentInteractionListener mListener;
@@ -29,15 +33,15 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_game, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_game, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder: " + holder.toString());
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(position);
+        holder.mIdView.setText(String.valueOf(position));
         holder.mContentView.setText(mValues.get(position).toString());
 
         /*holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +70,8 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
         }
 
         @Override

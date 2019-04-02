@@ -35,6 +35,6 @@ public class TableInputActivity extends AppCompatActivity {
         //Create Intend to start the GameChartActivity
         Intent intent = new Intent(this, GameChartActivity.class);
         startActivity(intent);
-
+        finish();
     }
 }

@@ -1,9 +1,11 @@
 package com.malte_mueller.dokobo.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.malte_mueller.dokobo.R;
 import com.malte_mueller.dokobo.model.Game;
@@ -39,6 +41,17 @@ public class GameChartActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        mAdapter.notifyDataSetChanged();
+    }
 
+    public void onAddGameClicked(View v){
+        //Create Intend to start the GameChartActivity
+        Intent intent = new Intent(this, GameInputActivity.class);
+        startActivity(intent);
+
+    }
 
 }

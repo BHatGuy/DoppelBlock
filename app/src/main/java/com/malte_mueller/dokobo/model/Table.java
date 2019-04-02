@@ -25,4 +25,8 @@ public class Table {
     public List<Game> getGames() {
         return games;
     }
+
+    public void addGame(Game g){
+        games.add(g);
+    }
 }
