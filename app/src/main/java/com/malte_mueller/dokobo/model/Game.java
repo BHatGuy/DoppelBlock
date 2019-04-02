@@ -7,10 +7,18 @@ import java.util.List;
  */
 public class Game {
     private int score;
-    private List<Integer> winners;
+    private boolean[] winners;
 
-    public Game(int score, List<Integer> winners){
+    public Game(int score, boolean[] winners){
         this.score = score;
         this.winners = winners;
+    }
+
+    public boolean isWinner(int i){
+        return winners[i];
+    }
+
+    public int getScore(){
+        return score;
     }
 }

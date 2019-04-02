@@ -19,12 +19,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameInputActivity extends AppCompatActivity {
+    private static final String TAG = GameInputActivity.class.getName();
+
     private EditText scoreInput;
+    private ToggleButton[] playerButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_input);
+
+        //TODO Dynamic
+        playerButtons = new ToggleButton[4];
+        playerButtons[0] = findViewById(R.id.btn_player1);
+        playerButtons[1] = findViewById(R.id.btn_player2);
+        playerButtons[2] = findViewById(R.id.btn_player3);
+        playerButtons[3] = findViewById(R.id.btn_player4);
 
         scoreInput = findViewById(R.id.eT_score_input);
         scoreInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -40,17 +50,10 @@ public class GameInputActivity extends AppCompatActivity {
         //Create Game
         //TODO check if it is valid
         int score = Integer.valueOf(scoreInput.getText().toString());
-        List<Integer> winners = new ArrayList<>();
-        TableLayout rootLinearLayout = findViewById(R.id.tableLayout);
-        int count = rootLinearLayout.getChildCount();
-        for (int i = 0; i < count; i++) {
-            View v = rootLinearLayout.getChildAt(i);
-            if (v instanceof ToggleButton) {
-                ToggleButton btn = (ToggleButton) v;
-                if(btn.isChecked()){
-                    winners.add(i);
-                }
-            }
+        boolean[] winners = new boolean[4];
+
+        for (int i = 0; i < playerButtons.length; i++) {
+            winners[i] = playerButtons[i].isChecked();
         }
 
         Game g = new Game(score, winners);

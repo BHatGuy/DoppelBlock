@@ -36,7 +36,7 @@ public class GameChartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new GameRecyclerViewAdapter(tableManager.getActiveTable().getGames());
+        mAdapter = new GameRecyclerViewAdapter(tableManager.getActiveTable().getScores());
         recyclerView.setAdapter(mAdapter);
 
     }
