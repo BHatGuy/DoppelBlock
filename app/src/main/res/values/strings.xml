@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DoKoBo</string>
+    <string name="player">Player n</string>
 </resources>
