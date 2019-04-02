@@ -46,7 +46,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             holder.scoreViews[i].setText(mValues.get(position)[i].toString());
         }
 
-        /*holder.mView.setOnClickListener(new View.OnClickListener() {
+        /*holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {

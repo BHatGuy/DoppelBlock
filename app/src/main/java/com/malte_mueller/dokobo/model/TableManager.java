@@ -37,8 +37,8 @@ public class TableManager{
         tables.add(t);
     }
 
-    public Table[] getTables(){
-        return (Table[]) tables.toArray();
+    public List<Table> getTables(){
+        return tables;
     }
 
     public void setActiveTable(Table t){

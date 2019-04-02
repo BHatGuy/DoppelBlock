@@ -7,17 +7,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.Game;
+import com.malte_mueller.dokobo.model.Table;
 import com.malte_mueller.dokobo.model.TableManager;
 
-public class GameChartActivity extends AppCompatActivity {
-    private static final String TAG = GameChartActivity.class.getName();
+public class TableSelectActivity extends AppCompatActivity implements TableRecyclerViewAdapter.OnListFragmentInteractionListener{
+    private static final String TAG = TableSelectActivity.class.getName();
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private TableManager tableManager;
 
@@ -25,11 +24,12 @@ public class GameChartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_chart);
-        recyclerView = findViewById(R.id.rv_games);
+        setContentView(R.layout.activity_table_select);
+        recyclerView = findViewById(R.id.rv_tables);
 
 
         tableManager = TableManager.getInstance();
+        tableManager.loadTables(getApplicationContext());
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -40,30 +40,26 @@ public class GameChartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new GameRecyclerViewAdapter(tableManager.getActiveTable().getScores());
-        recyclerView.setAdapter(mAdapter);
-
-        //TODO: Dynamic
-        String[] playerNames = tableManager.getActiveTable().getPlayers();
-        ((TextView) findViewById(R.id.player1)).setText(playerNames[0]);
-        ((TextView) findViewById(R.id.player2)).setText(playerNames[1]);
-        ((TextView) findViewById(R.id.player3)).setText(playerNames[2]);
-        ((TextView) findViewById(R.id.player4)).setText(playerNames[3]);
-
+        adapter = new TableRecyclerViewAdapter(tableManager.getTables(), this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
         Log.d(TAG, "onPostResume: ");
-        mAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
-    public void onAddGameClicked(View v){
-        //Create Intend to start the GameChartActivity
-        Intent intent = new Intent(this, GameInputActivity.class);
+    @Override
+    public void onListFragmentInteraction(Table t) {
+        tableManager.setActiveTable(t);
+        Intent intent = new Intent(this, GameChartActivity.class);
         startActivity(intent);
-
     }
 
+    public void onAddTable(View v){
+        Intent intent = new Intent(this, TableInputActivity.class);
+        startActivity(intent);
+    }
 }

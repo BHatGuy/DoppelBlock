@@ -17,6 +17,7 @@ public class Table implements Serializable {
         this.name = name;
         this.players = players;
         games = new ArrayList<>();
+        scores = new ArrayList<>();
     }
 
     @Override
@@ -30,34 +31,26 @@ public class Table implements Serializable {
 
     public void addGame(Game g){
         games.add(g);
-        calculateScores();
+
+        Integer[] prev = new Integer[4];
+        if (scores.isEmpty()){
+            for (int i = 0; i < prev.length; i++) {
+                prev[i] = 0;
+            }
+        } else {
+            prev = scores.get(scores.size() - 1);
+        }
+        Integer[] score = new Integer[4];
+        for (int i = 0; i < score.length; i++){
+            if(g.isWinner(i)){
+                score[i] = prev[i] + g.getScore();
+            } else {
+                score[i] = prev[i] - g.getScore();
+            }
+        }
+        scores.add(score);
     }
 
-    public void calculateScores(){
-        if (scores == null)
-            scores = new ArrayList<>();
-        // calculate score
-        //TODO: solos
-        for (Game g: games) {
-            Integer[] prev = new Integer[4];
-            if (scores.isEmpty()){
-                for (int i = 0; i < prev.length; i++) {
-                    prev[i] = 0;
-                }
-            } else {
-                prev = scores.get(scores.size() - 1);
-            }
-            Integer[] score = new Integer[4];
-            for (int i = 0; i < score.length; i++){
-                if(g.isWinner(i)){
-                    score[i] = prev[i] + g.getScore();
-                } else {
-                    score[i] = prev[i] - g.getScore();
-                }
-            }
-            scores.add(score);
-        }
-    }
 
     public String[] getPlayers() {
         return players;
@@ -68,7 +61,6 @@ public class Table implements Serializable {
     }
 
     public List<Integer[]> getScores() {
-        calculateScores();
         return scores;
     }
 }

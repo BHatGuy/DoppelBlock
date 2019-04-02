@@ -72,7 +72,7 @@
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rw_games"
+        android:id="@+id/rv_games"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
