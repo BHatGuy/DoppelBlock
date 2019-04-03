@@ -22,7 +22,7 @@
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:text="#"
             android:textAlignment="center" />
 
@@ -57,6 +57,14 @@
             android:layout_weight="4"
             android:text="p4"
             android:textAlignment="viewEnd" />
+
+        <TextView
+            android:id="@+id/player"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="Score"
+            android:textAlignment="viewEnd" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -76,8 +84,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_addGame"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"

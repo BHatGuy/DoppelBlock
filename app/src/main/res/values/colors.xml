@@ -3,6 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="unchecked">#F44336</color>
-    <color name="checked">#4CAF50</color>
+    <color name="loser">#F44336</color>
+    <color name="winner">#4CAF50</color>
+    <color name="chartBackground">#9E9E9E</color>
 </resources>

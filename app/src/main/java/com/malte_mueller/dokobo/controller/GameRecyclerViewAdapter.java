@@ -47,8 +47,8 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         for (int i = 0; i < mValues.get(position).length; i++){
             holder.scoreViews[i].setText(mValues.get(position)[i].toString());
         }
-        if(position % 2 == 0){
-            holder.container.setBackgroundColor(Color.GRAY);
+        if(position % 8 < 4){
+            holder.container.setBackgroundColor(holder.mView.getResources().getColor(R.color.chartBackground));
         }
     }
 

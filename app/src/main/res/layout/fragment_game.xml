@@ -7,46 +7,62 @@
     android:hapticFeedbackEnabled="true"
     android:orientation="horizontal"
     android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:paddingTop="10dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="10dp">
 
     <TextView
         android:id="@+id/game_number"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:layout_weight="1.2"
+        android:fontFamily="sans-serif-light"
+        android:textAlignment="viewEnd"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/score1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
+        android:fontFamily="sans-serif-light"
         android:textAlignment="viewEnd"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/score2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
+        android:fontFamily="sans-serif-light"
         android:textAlignment="viewEnd"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/score3"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
+        android:fontFamily="sans-serif-light"
         android:textAlignment="viewEnd"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/score4"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
+        android:fontFamily="sans-serif-light"
         android:textAlignment="viewEnd"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:fontFamily="sans-serif-light"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp" />
 
 </LinearLayout>
