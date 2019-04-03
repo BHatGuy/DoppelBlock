@@ -1,10 +1,12 @@
 package com.malte_mueller.dokobo.controller;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.malte_mueller.dokobo.R;
@@ -45,17 +47,9 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         for (int i = 0; i < mValues.get(position).length; i++){
             holder.scoreViews[i].setText(mValues.get(position)[i].toString());
         }
-
-        /*holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });*/
+        if(position % 2 == 0){
+            holder.container.setBackgroundColor(Color.GRAY);
+        }
     }
 
     @Override
@@ -63,13 +57,14 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView gameNumberView;
-        public final TextView[] scoreViews;
-        public Integer[] mItem;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final View mView;
+        final TextView gameNumberView;
+        final TextView[] scoreViews;
+        final LinearLayout container;
+        Integer[] mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             gameNumberView = view.findViewById(R.id.game_number);
@@ -78,6 +73,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             scoreViews[1] = view.findViewById(R.id.score2);
             scoreViews[2] = view.findViewById(R.id.score3);
             scoreViews[3] = view.findViewById(R.id.score4);
+            container = view.findViewById(R.id.ll_game);
         }
     }
 }

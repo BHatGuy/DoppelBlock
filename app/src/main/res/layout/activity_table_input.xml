@@ -35,10 +35,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Title"
                 android:inputType="textPersonName"
                 tools:layout_editor_absoluteX="133dp"
-                tools:layout_editor_absoluteY="16dp"
-                tools:text="Title" />
+                tools:layout_editor_absoluteY="16dp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -52,8 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/player"
                 android:inputType="textPersonName"
-                android:text="@string/player"
                 tools:layout_editor_absoluteX="133dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -62,8 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/player"
                 android:inputType="textPersonName"
-                android:text="@string/player"
                 tools:layout_editor_absoluteX="133dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -72,8 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/player"
                 android:inputType="textPersonName"
-                android:text="@string/player"
                 tools:layout_editor_absoluteX="133dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -82,8 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/player"
                 android:inputType="textPersonName"
-                android:text="@string/player"
                 tools:layout_editor_absoluteX="133dp"
                 tools:layout_editor_absoluteY="16dp" />
         </LinearLayout>
