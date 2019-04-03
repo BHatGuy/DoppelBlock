@@ -1,8 +1,7 @@
 package com.malte_mueller.dokobo.controller;
 
-import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,67 +11,78 @@ import android.widget.TextView;
 import com.malte_mueller.dokobo.R;
 
 import com.malte_mueller.dokobo.model.Game;
-import com.malte_mueller.dokobo.model.TableManager;
+import com.malte_mueller.dokobo.model.Table;
 
-import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a score and makes a call to the
- * specified {@link //OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerViewAdapter.ViewHolder> {
     private static final String TAG = GameRecyclerViewAdapter.class.getName();
 
 
-    private final List<Integer[]> mValues;
+    private final Table table;
     //private final OnListFragmentInteractionListener mListener;
 
-    public GameRecyclerViewAdapter(List<Integer[]> items) {
-        mValues = items;
+    GameRecyclerViewAdapter(Table table) {
+        this.table = table;
         //mListener = listener;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_game, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: " + holder.toString());
-        holder.mItem = mValues.get(position);
-        holder.gameNumberView.setText(String.valueOf(position + 1));
-        for (int i = 0; i < mValues.get(position).length; i++){
-            holder.scoreViews[i].setText(mValues.get(position)[i].toString());
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        Game game = table.getGames().get(position);
+        Integer[] score = table.getScore(game);
+        int gameIndex = table.getGameIndex(game);
+        boolean[] winners = game.getWinners();
+
+        holder.item = game;
+        holder.gameNumberView.setText(String.valueOf(gameIndex));
+
+        for (int i = 0; i < holder.playerScoreViews.length; i++){
+            holder.playerScoreViews[i].setText(String.valueOf(score[i]));
+            if(winners[i]){
+                holder.playerScoreViews[i].setTextColor(holder.view.getResources().getColor(R.color.winner));
+            } else {
+                holder.playerScoreViews[i].setTextColor(holder.view.getResources().getColor(R.color.loser));
+            }
         }
-        if(position % 8 < 4){
-            holder.container.setBackgroundColor(holder.mView.getResources().getColor(R.color.chartBackground));
+        holder.scoreView.setText(String.valueOf(game.getScore())); //TODO Solos
+        if((gameIndex-1) % 8 < 4){
+            holder.container.setBackgroundColor(holder.view.getResources().getColor(R.color.chartBackground1));
+        } else {
+            holder.container.setBackgroundColor(holder.view.getResources().getColor(R.color.chartBackground2));
+
         }
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return table.getGames().size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        final View mView;
+        final View view;
         final TextView gameNumberView;
-        final TextView[] scoreViews;
+        final TextView[] playerScoreViews;
         final LinearLayout container;
-        Integer[] mItem;
+        final TextView scoreView;
+        Game item;
 
         ViewHolder(View view) {
             super(view);
-            mView = view;
+            this.view = view;
             gameNumberView = view.findViewById(R.id.game_number);
-            scoreViews = new TextView[4];
-            scoreViews[0] = view.findViewById(R.id.score1);
-            scoreViews[1] = view.findViewById(R.id.score2);
-            scoreViews[2] = view.findViewById(R.id.score3);
-            scoreViews[3] = view.findViewById(R.id.score4);
+            playerScoreViews = new TextView[4];
+            playerScoreViews[0] = view.findViewById(R.id.score1);
+            playerScoreViews[1] = view.findViewById(R.id.score2);
+            playerScoreViews[2] = view.findViewById(R.id.score3);
+            playerScoreViews[3] = view.findViewById(R.id.score4);
+            scoreView = view.findViewById(R.id.score);
             container = view.findViewById(R.id.ll_game);
         }
     }

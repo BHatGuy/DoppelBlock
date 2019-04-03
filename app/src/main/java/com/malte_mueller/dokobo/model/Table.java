@@ -55,7 +55,7 @@ public class Table implements Serializable {
                         score[i] = prev[i] + 3 * g.getScore();
 
                 } else {
-                    if ( !(g.getSolist() == i))
+                    if (!(g.getSolist() == i))
                         score[i] = prev[i] - g.getScore();
                     else
                         score[i] = prev[i] - 3 * g.getScore();
@@ -74,8 +74,13 @@ public class Table implements Serializable {
         return name;
     }
 
-    public List<Integer[]> getScores() {
+    public int getGameIndex(Game game) {
+        return games.indexOf(game) + 1;
+    }
+
+    public Integer[] getScore(Game game) {
+        int index = games.indexOf(game);
         calculateScore();
-        return scores;
+        return scores.get(index);
     }
 }
