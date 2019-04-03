@@ -52,7 +52,9 @@ public class GameInputActivity extends AppCompatActivity {
     public void onGameSubmit(View view){
         //Create Game
         //TODO check if it is valid
-        int score = Integer.valueOf(scoreInput.getText().toString());
+        String text = scoreInput.getText().toString();
+        if (text.length() == 0) return; //TODO toas or snackbar
+        int score = Integer.valueOf(text);
         boolean[] winners = new boolean[4];
 
         for (int i = 0; i < playerButtons.length; i++) {
