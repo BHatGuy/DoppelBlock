@@ -31,31 +31,38 @@ public class Table implements Serializable {
 
     public void addGame(Game g){
         games.add(g);
+        calculateScore();
+    }
 
-        Integer[] prev = new Integer[4];
-        if (scores.isEmpty()){
-            for (int i = 0; i < prev.length; i++) {
-                prev[i] = 0;
-            }
-        } else {
-            prev = scores.get(scores.size() - 1);
-        }
-        Integer[] score = new Integer[4];
-        for (int i = 0; i < score.length; i++){
-            if(g.isWinner(i)){
-                if ( !(g.getSolist() == i))
-                    score[i] = prev[i] + g.getScore();
-                else
-                    score[i] = prev[i] + 3 * g.getScore();
-
+    private void calculateScore(){
+        if (scores == null) scores = new ArrayList<>();
+        scores.clear();
+        for (Game g : games){
+            Integer[] prev = new Integer[4];
+            if (scores.isEmpty()){
+                for (int i = 0; i < prev.length; i++) {
+                    prev[i] = 0;
+                }
             } else {
-                if ( !(g.getSolist() == i))
-                    score[i] = prev[i] - g.getScore();
-                else
-                    score[i] = prev[i] - 3 * g.getScore();
+                prev = scores.get(scores.size() - 1);
             }
+            Integer[] score = new Integer[4];
+            for (int i = 0; i < score.length; i++){
+                if(g.isWinner(i)){
+                    if ( !(g.getSolist() == i))
+                        score[i] = prev[i] + g.getScore();
+                    else
+                        score[i] = prev[i] + 3 * g.getScore();
+
+                } else {
+                    if ( !(g.getSolist() == i))
+                        score[i] = prev[i] - g.getScore();
+                    else
+                        score[i] = prev[i] - 3 * g.getScore();
+                }
+            }
+            scores.add(score);
         }
-        scores.add(score);
     }
 
 
@@ -68,6 +75,7 @@ public class Table implements Serializable {
     }
 
     public List<Integer[]> getScores() {
+        calculateScore();
         return scores;
     }
 }

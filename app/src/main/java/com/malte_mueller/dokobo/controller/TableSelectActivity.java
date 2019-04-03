@@ -54,6 +54,7 @@ public class TableSelectActivity extends AppCompatActivity implements TableRecyc
     @Override
     public void onListFragmentInteraction(Table t) {
         tableManager.setActiveTable(t);
+        Log.d(TAG, "onListFragmentInteraction: " + tableManager.getActiveTable().getName());
         Intent intent = new Intent(this, GameChartActivity.class);
         startActivity(intent);
     }

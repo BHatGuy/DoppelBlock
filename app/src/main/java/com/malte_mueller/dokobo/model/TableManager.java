@@ -66,6 +66,7 @@ public class TableManager{
     }
 
     public void loadTables(Context context){
+        tables.clear();
         for (String s : context.fileList()) {
             Log.d(TAG, "loading table " + s);
             try {
