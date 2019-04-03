@@ -6,17 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".controller.GameInputActivity">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Winners:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:stretchColumns="*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <TableRow
             android:layout_width="match_parent"
@@ -27,12 +37,14 @@
                 android:id="@+id/btn_player1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@drawable/toggle_background"
                 android:text="@string/player" />
 
             <ToggleButton
                 android:id="@+id/btn_player2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@drawable/toggle_background"
                 android:text="@string/player" />
         </TableRow>
 
@@ -45,12 +57,14 @@
                 android:id="@+id/btn_player3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@drawable/toggle_background"
                 android:text="@string/player" />
 
             <ToggleButton
                 android:id="@+id/btn_player4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@drawable/toggle_background"
                 android:text="@string/player" />
         </TableRow>
 
@@ -74,13 +88,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Score:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
