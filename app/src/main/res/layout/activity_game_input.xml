@@ -37,6 +37,7 @@
                 android:id="@+id/btn_player1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:background="@drawable/toggle_background"
                 android:text="@string/player" />
 
@@ -44,6 +45,7 @@
                 android:id="@+id/btn_player2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:background="@drawable/toggle_background"
                 android:text="@string/player" />
         </TableRow>
@@ -57,6 +59,7 @@
                 android:id="@+id/btn_player3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:background="@drawable/toggle_background"
                 android:text="@string/player" />
 
@@ -64,6 +67,7 @@
                 android:id="@+id/btn_player4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:background="@drawable/toggle_background"
                 android:text="@string/player" />
         </TableRow>
