@@ -1,6 +1,8 @@
 package com.malte_mueller.dokobo.controller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,6 +59,32 @@ public class TableSelectActivity extends AppCompatActivity implements TableRecyc
         Log.d(TAG, "onListFragmentInteraction: " + tableManager.getActiveTable().getName());
         Intent intent = new Intent(this, GameChartActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteClick(final Table t) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Are your sure?").setTitle("Continue deleting?");
+
+        // Add the buttons
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Continue:
+                tableManager.deleteTable(t, getApplicationContext());
+                adapter.notifyDataSetChanged();
+            }
+        });
+        builder.setNegativeButton("No", null);
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onShareClick(Table t) {
+        // TODO Implement
     }
 
     public void onAddTable(View v){

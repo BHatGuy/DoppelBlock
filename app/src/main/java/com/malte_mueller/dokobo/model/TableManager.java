@@ -80,4 +80,13 @@ public class TableManager{
             }
         }
     }
+
+    public void deleteTable(Table table, Context context){
+        tables.remove(table);
+        String filename = table.getName() + ".dokobo";
+        File f = new File(context.getFilesDir(), filename);
+        boolean res = f.delete();
+        Log.d(TAG, "deleteTable: " + res);
+
+    }
 }

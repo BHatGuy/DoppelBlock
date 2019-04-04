@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.malte_mueller.dokobo.R;
@@ -45,9 +46,25 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.item);
+                }
+            }
+        });
+
+        holder.btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    mListener.onShareClick(holder.item);
+                }
+            }
+        });
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    mListener.onDeleteClick(holder.item);
                 }
             }
         });
@@ -58,20 +75,26 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        //TODO adjust
-        public final View view;
-        public final TextView titleView;
-        public Table item;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final View view;
+        final TextView titleView;
+        Table item;
+        ImageButton btnDelete;
+        ImageButton btnShare;
 
-        public ViewHolder(View view) {
+
+        ViewHolder(View view) {
             super(view);
             this.view = view;
             titleView = view.findViewById(R.id.tw_title);
+            btnDelete = view.findViewById(R.id.btnDeleteTable);
+            btnShare = view.findViewById(R.id.btnShareTable);
         }
     }
 
     public interface OnListFragmentInteractionListener{
-        public void onListFragmentInteraction(Table t);
+        void onListFragmentInteraction(Table t);
+        void onDeleteClick(Table t);
+        void onShareClick(Table t);
     }
 }
