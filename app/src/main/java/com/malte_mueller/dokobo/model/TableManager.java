@@ -1,7 +1,10 @@
 package com.malte_mueller.dokobo.model;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.util.Log;
+
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,8 +25,11 @@ public class TableManager{
     private List<Table> tables;
     private int activeTable;
 
+    private final Gson gson;
+
     private TableManager () {
         tables = new ArrayList<>();
+        gson = new Gson();
     }
 
     public static TableManager getInstance() {
@@ -51,13 +57,13 @@ public class TableManager{
 
     public void saveTables(Context context){
         for (Table table: tables) {
-            String filename = table.getName() + ".dokobo";
+            String filename = table.getName() + ".json";
             FileOutputStream outputStream;
             try {
                 outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
-                ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
-                objectOut.writeObject(table);
-                objectOut.close();
+                byte[] data = gson.toJson(table).getBytes();
+                outputStream.write(data);
+                outputStream.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -71,10 +77,11 @@ public class TableManager{
             Log.d(TAG, "loading table " + s);
             try {
                 FileInputStream inputStream = context.openFileInput(s);
-                ObjectInputStream objectIn = new ObjectInputStream(inputStream);
-                Table t = (Table) objectIn.readObject();
-                addTable(t);
-                objectIn.close();
+                byte[] data = new byte[inputStream.available()];
+                int n = inputStream.read(data);
+                String json = new String(data);
+                tables.add(gson.fromJson(json, Table.class));
+                inputStream.close();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -83,10 +90,16 @@ public class TableManager{
 
     public void deleteTable(Table table, Context context){
         tables.remove(table);
-        String filename = table.getName() + ".dokobo";
+        String filename = table.getName() + ".json";
         File f = new File(context.getFilesDir(), filename);
         boolean res = f.delete();
         Log.d(TAG, "deleteTable: " + res);
 
+    }
+
+    public File getFile(Table table, Context context){
+        String filename = table.getName() + ".json";
+        File f = new File(context.getFilesDir(), filename);
+        return f;
     }
 }
