@@ -99,7 +99,6 @@ public class TableManager{
 
     public File getFile(Table table, Context context){
         String filename = table.getName() + ".json";
-        File f = new File(context.getFilesDir(), filename);
-        return f;
+        return new File(context.getFilesDir(), filename);
     }
 }

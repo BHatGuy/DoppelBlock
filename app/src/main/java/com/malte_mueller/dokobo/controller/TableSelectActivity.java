@@ -2,6 +2,9 @@ package com.malte_mueller.dokobo.controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +13,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.malte_mueller.dokobo.BuildConfig;
 import com.malte_mueller.dokobo.R;
 import com.malte_mueller.dokobo.model.Table;
 import com.malte_mueller.dokobo.model.TableManager;
+
+import java.io.File;
 
 public class TableSelectActivity extends AppCompatActivity implements TableRecyclerViewAdapter.OnListFragmentInteractionListener{
     private static final String TAG = TableSelectActivity.class.getName();
@@ -84,7 +90,25 @@ public class TableSelectActivity extends AppCompatActivity implements TableRecyc
 
     @Override
     public void onShareClick(Table t) {
-        // TODO Implement
+        // create new Intent
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        // set flag to give temporary permission to external app to use your FileProvider
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // generate URI, I defined authority as the application ID in the Manifest, the last param is file I want to open
+        File f = tableManager.getFile(t, getApplicationContext());
+        Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, f);
+
+        // I am opening a PDF file so I give it a valid MIME type
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        intent.setType("application/json");
+
+        // validate that the device can open your File!
+        PackageManager pm = getPackageManager();
+        if (intent.resolveActivity(pm) != null) {
+            startActivity(Intent.createChooser(intent, "Send save"));
+        }
     }
 
     public void onAddTable(View v){
