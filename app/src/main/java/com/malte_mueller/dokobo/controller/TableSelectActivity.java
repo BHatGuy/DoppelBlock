@@ -1,5 +1,7 @@
 package com.malte_mueller.dokobo.controller;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +21,9 @@ import com.malte_mueller.dokobo.model.Table;
 import com.malte_mueller.dokobo.model.TableManager;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class TableSelectActivity extends AppCompatActivity implements TableRecyclerViewAdapter.OnListFragmentInteractionListener{
     private static final String TAG = TableSelectActivity.class.getName();
@@ -50,12 +55,29 @@ public class TableSelectActivity extends AppCompatActivity implements TableRecyc
         // specify an adapter (see also next example)
         adapter = new TableRecyclerViewAdapter(tableManager.getTables(), this);
         recyclerView.setAdapter(adapter);
+
+        // Get intent, action and MIME type
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_VIEW.equals(action)) {
+            handleViewIntent(intent);
+        }
+
+    }
+
+    private void handleViewIntent(Intent intent){
+        //TODO toas and dialog
+        Uri fileUri = intent.getData();
+        if (fileUri == null) return;
+        tableManager.importTable(fileUri, getApplicationContext());
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Log.d(TAG, "onPostResume: ");
         adapter.notifyDataSetChanged();
     }
 
