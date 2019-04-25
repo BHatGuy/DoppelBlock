@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This Class represents one Tabel. It has a set of played games and the Players.
+ * This Class represents one Table. It has a set of played games and the Players.
  */
 public class Table implements Serializable {
     private String name;

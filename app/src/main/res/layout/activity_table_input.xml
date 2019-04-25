@@ -13,7 +13,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,45 +47,21 @@
                 android:text="Players:"
                 android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/et_player1"
+            <LinearLayout
+                android:id="@+id/ll_players"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/player"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="133dp"
-                tools:layout_editor_absoluteY="16dp" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/et_player2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/player"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="133dp"
-                tools:layout_editor_absoluteY="16dp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_player3"
+            <Button
+                android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/player"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="133dp"
-                tools:layout_editor_absoluteY="16dp" />
+                android:onClick="onAddPlayer"
+                android:text="Add Player" />
 
-            <EditText
-                android:id="@+id/et_player4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/player"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="133dp"
-                tools:layout_editor_absoluteY="16dp" />
         </LinearLayout>
     </ScrollView>
 
