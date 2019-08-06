@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Table implements Serializable {
     private String name;
+    private playerCount; //number of players in current table
     private String[] players;
     private List<Game> games;
     private transient List<Integer[]> scores;
@@ -18,6 +19,7 @@ public class Table implements Serializable {
         this.players = players;
         games = new ArrayList<>();
         scores = new ArrayList<>();
+        playerCount = players.length;
     }
 
     @Override
@@ -36,9 +38,11 @@ public class Table implements Serializable {
 
     private void calculateScore(){
         if (scores == null) scores = new ArrayList<>();
-        scores.clear();
+        scores.clear(); //each score is being calculated again
         for (Game g : games){
-            Integer[] prev = new Integer[4];
+
+            //get previous game
+            Integer[] prev = new Integer[playerCount];
             if (scores.isEmpty()){
                 for (int i = 0; i < prev.length; i++) {
                     prev[i] = 0;
@@ -46,21 +50,36 @@ public class Table implements Serializable {
             } else {
                 prev = scores.get(scores.size() - 1);
             }
-            Integer[] score = new Integer[4];
-            for (int i = 0; i < score.length; i++){
-                if(g.isWinner(i)){
-                    if ( !(g.getSolist() == i))
-                        score[i] = prev[i] + g.getScore();
-                    else
-                        score[i] = prev[i] + 3 * g.getScore();
 
-                } else {
-                    if (!(g.getSolist() == i))
-                        score[i] = prev[i] - g.getScore();
-                    else
-                        score[i] = prev[i] - 3 * g.getScore();
+            //calculate current game
+            Integer[] score = new Integer[playerCount];
+
+            //case: only some players get score; sum needs not be zero (e. g. in Skat)
+            if( !(g.existsWinner && g.existsLoser) ){
+                for (int i = 0; i < score.length; i++){
+                    if(roles[i] == WINNER) score[i] = prev[i] + g.getScore();
+                    else if(roles[i] == LOSER) score[i] = prev[i] - g.getScore();
+                    else if(roles[i] == NEUTRAL) score[i] = prev[i];
                 }
             }
+
+            //case: each player gets score, depending on whether they win or lose
+            //neutrals do not get score; sum needs to be zero
+            else{
+                //maybe (e. g. in case of a solo) scores have to be multiplied
+                int factorWinner = g.numberOfLosers / g.numberOfWinners;
+                factorLoser = g.numberOfWinners / g.numberOfLosers;
+                if (factorWinner == 0) factorWinner = 1;
+                if (factorLoser == 0) factorLoser = 1;
+
+                for (int i = 0; i < score.length; i++){
+                    if(roles[i] == WINNER) score[i] = prev[i] + factorWinner * g.getScore();
+                    else if(roles[i] == LOSER) score[i] = prev[i] - factorLoser * g.getScore();
+                    else if(roles[i] == NEUTRAL) score[i] = prev[i];
+                }
+
+            }
+
             scores.add(score);
         }
     }

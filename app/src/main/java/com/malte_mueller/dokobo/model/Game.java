@@ -7,34 +7,87 @@ import java.io.Serializable;
  */
 public class Game implements Serializable {
     private int score;
-    private boolean[] winners;
+    private Role[] roles;
 
-    public Game(int score, boolean[] winners){
+    public static enum Role{
+      WINNER, LOSER, NEUTRAL
+    }
+
+    public Game(int score, Role[] roles){
         this.score = score;
-        this.winners = winners;
+        this.roles = roles;
     }
 
     public boolean isWinner(int i){
-        return winners[i];
+        return (roles[i] == WINNER);
     }
 
-    public boolean[] getWinners(){
-        return winners;
+    public Role getRole(int i){
+        return roles[i];
     }
+
+    public boolean existsWinner(){
+        for(int i=0; i<roles.length; i++){
+            if (roles[i] == WINNER) return true;
+        }
+        return false;
+    }
+
+    public boolean existsLoser(){
+        for(int i=0; i<roles.length; i++){
+            if (roles[i] == LOSER) return true;
+        }
+        return false;
+    }
+
+    public boolean existsNeutral(){
+        for(int i=0; i<roles.length; i++){
+            if (roles[i] == NEUTRAL) return true;
+        }
+        return false;
+    }
+
+    public boolean numberOfWinners(){
+        int ret=0;
+        for(int i=0; i<roles.length; i++){
+            if (roles[i] == WINNER) ret++;
+        }
+        return ret;
+    }
+
+    public boolean numberOfLosers(){
+        int ret=0;
+        for(int i=0; i<roles.length; i++){
+            if (roles[i] == LOSER) ret++;
+        }
+        return ret;
+    }
+
+    public boolean numberOfNeutrals(){
+        int ret=0;
+        for(int i=0; i<roles.length; i++){
+            if (roles[i] == NEUTRAL) ret++;
+        }
+        return ret;
+    }
+
+//    public boolean[] getWinners(){
+//        return winners;
+//    }
 
     public int getScore(){
         return score;
     }
 
-    public boolean isSolo(){
+/*    public boolean isSolo(){
         int wc = 0;
         for (boolean b : winners) {
             if (b) wc++;
         }
         return wc == 1 || wc == 3;
     }
-
-    public int getSolist(){
+*/
+/*    public int getSolist(){
         if (!isSolo()) return -1;
         //count if more true or more false:
         int trues = 0;
@@ -48,4 +101,5 @@ public class Game implements Serializable {
         }
         return -1;
     }
+*/
 }
