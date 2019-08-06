@@ -13,8 +13,13 @@ import com.malte_mueller.dokobo.R;
 import com.malte_mueller.dokobo.model.Table;
 import com.malte_mueller.dokobo.model.TableManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TableInputActivity extends AppCompatActivity {
     private TableManager tableManager;
+    private List<PlayerFragment> fragments;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +39,13 @@ public class TableInputActivity extends AppCompatActivity {
     }
 
     private void addPlayerFragment() {
+        if (fragments == null) fragments = new ArrayList<>();
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PlayerFragment fragment = new PlayerFragment();
+        fragments.add(fragment);
         fragmentTransaction.add(R.id.ll_players, fragment);
         fragmentTransaction.commit();
 
@@ -44,7 +53,11 @@ public class TableInputActivity extends AppCompatActivity {
 
     public void onSubmit(View v) {
         //TODO: dynamic for more players?
-        String[] players = new String[4];
+        String[] players = new String[fragments.size()];
+
+        for(int i = 0; i < players.length; i++){
+            players[i] = fragments.get(i).getName();
+        }
 
         String name = ((EditText) findViewById(R.id.et_title)).getText().toString();
         Table t = new Table(name, players);

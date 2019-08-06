@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.malte_mueller.dokobo.R;
@@ -19,6 +20,7 @@ import com.malte_mueller.dokobo.R;
 public class PlayerFragment extends Fragment {
 
     private ImageButton deletBtn;
+    private EditText etName;
 
     public PlayerFragment() {
         // Required empty public constructor
@@ -35,6 +37,7 @@ public class PlayerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         deletBtn = getView().findViewById(R.id.btn_delete_player);
+        etName = getView().findViewById(R.id.et_pName);
         deletBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,5 +46,9 @@ public class PlayerFragment extends Fragment {
 
             }
         });
+    }
+
+    public String getName(){
+        return etName.getText().toString();
     }
 }
