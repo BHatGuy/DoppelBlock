@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.malte_mueller.dokobo.model.Game.Role.LOSER;
+import static com.malte_mueller.dokobo.model.Game.Role.NEUTRAL;
+import static com.malte_mueller.dokobo.model.Game.Role.WINNER;
+
 /**
  * This Class represents one Table. It has a set of played games and the Players.
  */
 public class Table implements Serializable {
     private String name;
-    private playerCount; //number of players in current table
+    private int playerCount; //number of players in current table
     private String[] players;
     private List<Game> games;
     private transient List<Integer[]> scores;
@@ -55,11 +59,11 @@ public class Table implements Serializable {
             Integer[] score = new Integer[playerCount];
 
             //case: only some players get score; sum needs not be zero (e. g. in Skat)
-            if( !(g.existsWinner && g.existsLoser) ){
+            if( !(g.existsWinner() && g.existsLoser()) ){
                 for (int i = 0; i < score.length; i++){
-                    if(roles[i] == WINNER) score[i] = prev[i] + g.getScore();
-                    else if(roles[i] == LOSER) score[i] = prev[i] - g.getScore();
-                    else if(roles[i] == NEUTRAL) score[i] = prev[i];
+                    if(g.getRole(i) == WINNER) score[i] = prev[i] + g.getScore();
+                    else if(g.getRole(i) == LOSER) score[i] = prev[i] - g.getScore();
+                    else if(g.getRole(i) == NEUTRAL) score[i] = prev[i];
                 }
             }
 
@@ -67,15 +71,15 @@ public class Table implements Serializable {
             //neutrals do not get score; sum needs to be zero
             else{
                 //maybe (e. g. in case of a solo) scores have to be multiplied
-                int factorWinner = g.numberOfLosers / g.numberOfWinners;
-                factorLoser = g.numberOfWinners / g.numberOfLosers;
+                int factorWinner = g.numberOfLosers() / g.numberOfWinners();
+                int factorLoser = g.numberOfWinners() / g.numberOfLosers();
                 if (factorWinner == 0) factorWinner = 1;
                 if (factorLoser == 0) factorLoser = 1;
 
                 for (int i = 0; i < score.length; i++){
-                    if(roles[i] == WINNER) score[i] = prev[i] + factorWinner * g.getScore();
-                    else if(roles[i] == LOSER) score[i] = prev[i] - factorLoser * g.getScore();
-                    else if(roles[i] == NEUTRAL) score[i] = prev[i];
+                    if(g.getRole(i) == WINNER) score[i] = prev[i] + factorWinner * g.getScore();
+                    else if(g.getRole(i) == LOSER) score[i] = prev[i] - factorLoser * g.getScore();
+                    else if(g.getRole(i) == NEUTRAL) score[i] = prev[i];
                 }
 
             }

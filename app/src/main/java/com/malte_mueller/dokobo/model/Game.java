@@ -19,7 +19,7 @@ public class Game implements Serializable {
     }
 
     public boolean isWinner(int i){
-        return (roles[i] == WINNER);
+        return (roles[i] == Role.WINNER);
     }
 
     public Role getRole(int i){
@@ -28,45 +28,45 @@ public class Game implements Serializable {
 
     public boolean existsWinner(){
         for(int i=0; i<roles.length; i++){
-            if (roles[i] == WINNER) return true;
+            if (roles[i] == Role.WINNER) return true;
         }
         return false;
     }
 
     public boolean existsLoser(){
         for(int i=0; i<roles.length; i++){
-            if (roles[i] == LOSER) return true;
+            if (roles[i] == Role.LOSER) return true;
         }
         return false;
     }
 
     public boolean existsNeutral(){
         for(int i=0; i<roles.length; i++){
-            if (roles[i] == NEUTRAL) return true;
+            if (roles[i] == Role.NEUTRAL) return true;
         }
         return false;
     }
 
-    public boolean numberOfWinners(){
+    public int numberOfWinners(){
         int ret=0;
         for(int i=0; i<roles.length; i++){
-            if (roles[i] == WINNER) ret++;
+            if (roles[i] == Role.WINNER) ret++;
         }
         return ret;
     }
 
-    public boolean numberOfLosers(){
+    public int numberOfLosers(){
         int ret=0;
         for(int i=0; i<roles.length; i++){
-            if (roles[i] == LOSER) ret++;
+            if (roles[i] == Role.LOSER) ret++;
         }
         return ret;
     }
 
-    public boolean numberOfNeutrals(){
+    public int numberOfNeutrals(){
         int ret=0;
         for(int i=0; i<roles.length; i++){
-            if (roles[i] == NEUTRAL) ret++;
+            if (roles[i] == Role.NEUTRAL) ret++;
         }
         return ret;
     }

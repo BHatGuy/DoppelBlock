@@ -5,6 +5,7 @@
     <color name="colorAccent">#0288D1</color>
     <color name="loser">#D32F2F</color>
     <color name="winner">#689F38</color>
+    <color name="neutral">#00ACC1</color>
     <color name="chartBackground1">#C2C2C2</color>
     <color name="chartBackground2">#DFDFDF</color>
 </resources>

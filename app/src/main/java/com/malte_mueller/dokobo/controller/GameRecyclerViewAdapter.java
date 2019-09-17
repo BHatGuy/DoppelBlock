@@ -38,7 +38,8 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         Game game = table.getGames().get(position);
         Integer[] score = table.getScore(game);
         int gameIndex = table.getGameIndex(game);
-        boolean[] winners = game.getWinners();
+        //TODO load from table/game
+        boolean[] winners = {true, true, true, true};
 
         holder.item = game;
         holder.gameNumberView.setText(String.valueOf(gameIndex));

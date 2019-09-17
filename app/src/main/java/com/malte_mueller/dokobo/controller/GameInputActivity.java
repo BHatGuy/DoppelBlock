@@ -3,8 +3,11 @@ package com.malte_mueller.dokobo.controller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -12,10 +15,12 @@ import com.malte_mueller.dokobo.R;
 import com.malte_mueller.dokobo.model.Game;
 import com.malte_mueller.dokobo.model.TableManager;
 
+import java.util.zip.Inflater;
+
 public class GameInputActivity extends AppCompatActivity {
 
     private EditText scoreInput;
-    private ToggleButton[] playerButtons;
+    private ResultButton[] playerButtons;
     private TableManager tableManager;
 
     @Override
@@ -24,19 +29,19 @@ public class GameInputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_input);
         tableManager = TableManager.getInstance();
 
-
-        //TODO Dynamic
-        playerButtons = new ToggleButton[4];
-        playerButtons[0] = findViewById(R.id.btn_player1);
-        playerButtons[1] = findViewById(R.id.btn_player2);
-        playerButtons[2] = findViewById(R.id.btn_player3);
-        playerButtons[3] = findViewById(R.id.btn_player4);
+        LinearLayout ll = findViewById(R.id.ll_winBtns);
 
         String[] playerNames = tableManager.getActiveTable().getPlayers();
-        for (int i = 0; i < playerButtons.length; i++){
-            playerButtons[i].setText(playerNames[i]);
-            playerButtons[i].setTextOn(playerNames[i]);
-            playerButtons[i].setTextOff(playerNames[i]);
+
+        playerButtons = new ResultButton[playerNames.length];
+        LayoutInflater inflater = getLayoutInflater();
+        for (int i = 0; i < playerNames.length; i++){
+            ResultButton btn = (ResultButton) inflater.inflate(R.layout.button_resultbutton, null, false);
+            btn.setText(playerNames[i]);
+            btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+            playerButtons[i] = btn;
+            ll.addView(btn);
         }
 
         scoreInput = findViewById(R.id.eT_score_input);
@@ -49,19 +54,17 @@ public class GameInputActivity extends AppCompatActivity {
         });
     }
 
-    public void onGameSubmit(View view){
+    public void onGameSubmit(View view) {
         //Create Game
         //TODO check if it is valid
         String text = scoreInput.getText().toString();
         if (text.length() == 0) return; //TODO toas or snackbar
         int score = Integer.valueOf(text);
-        boolean[] winners = new boolean[4];
+        Game.Role[] roles = null;
 
-        for (int i = 0; i < playerButtons.length; i++) {
-            winners[i] = playerButtons[i].isChecked();
-        }
+        //TODO fill winners
 
-        Game g = new Game(score, winners);
+        Game g = new Game(score, roles);
         tableManager.getActiveTable().addGame(g);
         tableManager.saveTables(getApplicationContext());
         finish();
