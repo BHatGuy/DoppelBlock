@@ -39,14 +39,14 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         Integer[] score = table.getScore(game);
         int gameIndex = table.getGameIndex(game);
         //TODO load from table/game
-        boolean[] winners = {true, true, true, true};
+
 
         holder.item = game;
         holder.gameNumberView.setText(String.valueOf(gameIndex));
 
         for (int i = 0; i < holder.playerScoreViews.length; i++){
             holder.playerScoreViews[i].setText(String.valueOf(score[i]));
-            if(winners[i]){
+            if(game.isWinner(i)){
                 holder.playerScoreViews[i].setTextColor(holder.view.getResources().getColor(R.color.winner));
             } else {
                 holder.playerScoreViews[i].setTextColor(holder.view.getResources().getColor(R.color.loser));

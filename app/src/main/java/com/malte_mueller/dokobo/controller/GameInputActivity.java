@@ -58,11 +58,13 @@ public class GameInputActivity extends AppCompatActivity {
         //Create Game
         //TODO check if it is valid
         String text = scoreInput.getText().toString();
-        if (text.length() == 0) return; //TODO toas or snackbar
+        if (text.length() == 0) return; //TODO toast or snack-bar
         int score = Integer.valueOf(text);
-        Game.Role[] roles = null;
+        Game.Role[] roles = new Game.Role[tableManager.getActiveTable().getPlayers().length];
 
-        //TODO fill winners
+        for (int i = 0; i < roles.length; i++){
+            roles[i] = playerButtons[i].getState();
+        }
 
         Game g = new Game(score, roles);
         tableManager.getActiveTable().addGame(g);
