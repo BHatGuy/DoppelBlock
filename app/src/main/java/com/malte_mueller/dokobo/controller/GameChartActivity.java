@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.Game;
 import com.malte_mueller.dokobo.model.TableManager;
 
 public class GameChartActivity extends AppCompatActivity {
@@ -43,19 +45,26 @@ public class GameChartActivity extends AppCompatActivity {
         mAdapter = new GameRecyclerViewAdapter(tableManager.getActiveTable());
         recyclerView.setAdapter(mAdapter);
 
-        //TODO: Dynamic
+        LinearLayout headline = findViewById(R.id.ll_headline);
+        LayoutInflater inflater = getLayoutInflater();
         String[] playerNames = tableManager.getActiveTable().getPlayers();
-        ((TextView) findViewById(R.id.player1)).setText(playerNames[0]);
-        ((TextView) findViewById(R.id.player2)).setText(playerNames[1]);
-        ((TextView) findViewById(R.id.player3)).setText(playerNames[2]);
-        ((TextView) findViewById(R.id.player4)).setText(playerNames[3]);
+        for (String name: playerNames){
+            TextView nameTV = (TextView) inflater.inflate(R.layout.textview_pname, null);
+            nameTV.setText(name);
+
+            headline.addView(nameTV, 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 4));
+        }
+
+
+
+
+
 
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Log.d(TAG, "onPostResume: ");
         mAdapter.notifyDataSetChanged();
     }
 

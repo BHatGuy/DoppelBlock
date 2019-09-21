@@ -1,5 +1,6 @@
 package com.malte_mueller.dokobo.controller;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,16 +44,23 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
 
         holder.item = game;
         holder.gameNumberView.setText(String.valueOf(gameIndex));
+        LayoutInflater inflater = (LayoutInflater) holder.view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        for (int i = 0; i < holder.playerScoreViews.length; i++){
-            holder.playerScoreViews[i].setText(String.valueOf(score[i]));
+        for (int i = 0; i < score.length; i++){
+            TextView scoreView = (TextView) inflater.inflate(R.layout.textview_score, null);
+            holder.container.addView(scoreView, 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
+
+
+            scoreView.setText(String.valueOf(score[i]));
             if(game.isWinner(i)){
-                holder.playerScoreViews[i].setTextColor(holder.view.getResources().getColor(R.color.winner));
+                scoreView.setTextColor(holder.view.getResources().getColor(R.color.winner));
             } else {
-                holder.playerScoreViews[i].setTextColor(holder.view.getResources().getColor(R.color.loser));
+                scoreView.setTextColor(holder.view.getResources().getColor(R.color.loser));
             }
         }
-        holder.scoreView.setText(String.valueOf(game.getScore())); //TODO Solos
+
+
+        holder.scoreView.setText(String.valueOf(game.getScore()));
         if((gameIndex-1) % 8 < 4){
             holder.container.setBackgroundColor(holder.view.getResources().getColor(R.color.chartBackground1));
         } else {
@@ -69,7 +77,6 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
     class ViewHolder extends RecyclerView.ViewHolder {
         final View view;
         final TextView gameNumberView;
-        final TextView[] playerScoreViews;
         final LinearLayout container;
         final TextView scoreView;
         Game item;
@@ -78,11 +85,6 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             super(view);
             this.view = view;
             gameNumberView = view.findViewById(R.id.game_number);
-            playerScoreViews = new TextView[4];
-            playerScoreViews[0] = view.findViewById(R.id.score1);
-            playerScoreViews[1] = view.findViewById(R.id.score2);
-            playerScoreViews[2] = view.findViewById(R.id.score3);
-            playerScoreViews[3] = view.findViewById(R.id.score4);
             scoreView = view.findViewById(R.id.score);
             container = view.findViewById(R.id.ll_game);
         }

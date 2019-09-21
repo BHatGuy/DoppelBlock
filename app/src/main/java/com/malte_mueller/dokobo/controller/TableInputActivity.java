@@ -26,12 +26,6 @@ public class TableInputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_input);
         tableManager = TableManager.getInstance();
-
-        addPlayerFragment();
-        addPlayerFragment();
-        addPlayerFragment();
-        addPlayerFragment();
-
     }
 
     public void onAddPlayer(View v){

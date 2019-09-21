@@ -38,7 +38,7 @@ public class GameInputActivity extends AppCompatActivity {
         for (int i = 0; i < playerNames.length; i++){
             ResultButton btn = (ResultButton) inflater.inflate(R.layout.button_resultbutton, null, false);
             btn.setText(playerNames[i]);
-            btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            //TODO btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
             playerButtons[i] = btn;
             ll.addView(btn);

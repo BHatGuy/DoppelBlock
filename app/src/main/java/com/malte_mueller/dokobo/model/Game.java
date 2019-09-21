@@ -102,4 +102,8 @@ public class Game implements Serializable {
         return -1;
     }
 */
+
+    public int getPlayerCount(){
+        return roles.length;
+    }
 }
