@@ -49,10 +49,16 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             TextView scoreView = (TextView) inflater.inflate(R.layout.textview_score, null);
             holder.container.addView(scoreView, 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
             scoreView.setText(String.valueOf(score[i]));
-            if(game.isWinner(i)){
-                scoreView.setTextColor(holder.view.getResources().getColor(R.color.winner));
-            } else {
-                scoreView.setTextColor(holder.view.getResources().getColor(R.color.loser));
+            switch (game.getRole(i)){
+                case NEUTRAL:
+                    scoreView.setTextColor(holder.view.getResources().getColor(R.color.neutral));
+                    break;
+                case LOSER:
+                    scoreView.setTextColor(holder.view.getResources().getColor(R.color.loser));
+                    break;
+                case WINNER:
+                    scoreView.setTextColor(holder.view.getResources().getColor(R.color.winner));
+                    break;
             }
         }
         holder.stuffed = true;
