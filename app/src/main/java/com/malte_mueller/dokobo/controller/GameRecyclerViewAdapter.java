@@ -39,18 +39,15 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         Game game = table.getGames().get(position);
         Integer[] score = table.getScore(game);
         int gameIndex = table.getGameIndex(game);
-        //TODO load from table/game
-
 
         holder.item = game;
         holder.gameNumberView.setText(String.valueOf(gameIndex));
         LayoutInflater inflater = (LayoutInflater) holder.view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         for (int i = 0; i < score.length; i++){
+            if(holder.stuffed) continue;
             TextView scoreView = (TextView) inflater.inflate(R.layout.textview_score, null);
             holder.container.addView(scoreView, 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
-
-
             scoreView.setText(String.valueOf(score[i]));
             if(game.isWinner(i)){
                 scoreView.setTextColor(holder.view.getResources().getColor(R.color.winner));
@@ -58,7 +55,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
                 scoreView.setTextColor(holder.view.getResources().getColor(R.color.loser));
             }
         }
-
+        holder.stuffed = true;
 
         holder.scoreView.setText(String.valueOf(game.getScore()));
         if((gameIndex-1) % 8 < 4){
@@ -80,6 +77,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         final LinearLayout container;
         final TextView scoreView;
         Game item;
+        boolean stuffed = false;
 
         ViewHolder(View view) {
             super(view);
