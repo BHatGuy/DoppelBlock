@@ -36,12 +36,10 @@ public class GameInputActivity extends AppCompatActivity {
         playerButtons = new ResultButton[playerNames.length];
         LayoutInflater inflater = getLayoutInflater();
         for (int i = 0; i < playerNames.length; i++){
-            ResultButton btn = (ResultButton) inflater.inflate(R.layout.button_resultbutton, null, false);
+            ResultButton btn = (ResultButton) inflater.inflate(R.layout.button_resultbutton, null);
             btn.setText(playerNames[i]);
-            //TODO btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
-
             playerButtons[i] = btn;
-            ll.addView(btn);
+            ll.addView(btn, i, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
         }
 
         scoreInput = findViewById(R.id.eT_score_input);

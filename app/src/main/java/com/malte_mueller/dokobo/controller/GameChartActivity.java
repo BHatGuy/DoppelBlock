@@ -48,11 +48,11 @@ public class GameChartActivity extends AppCompatActivity {
         LinearLayout headline = findViewById(R.id.ll_headline);
         LayoutInflater inflater = getLayoutInflater();
         String[] playerNames = tableManager.getActiveTable().getPlayers();
-        for (String name: playerNames){
+        for (int i = 0; i < playerNames.length; i++){
             TextView nameTV = (TextView) inflater.inflate(R.layout.textview_pname, null);
-            nameTV.setText(name);
+            nameTV.setText(playerNames[i]);
 
-            headline.addView(nameTV, 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 4));
+            headline.addView(nameTV, i+1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 4));
         }
 
 

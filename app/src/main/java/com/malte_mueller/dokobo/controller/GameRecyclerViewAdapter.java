@@ -47,7 +47,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         for (int i = 0; i < score.length; i++){
             if(holder.stuffed) continue;
             TextView scoreView = (TextView) inflater.inflate(R.layout.textview_score, null);
-            holder.container.addView(scoreView, 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
+            holder.container.addView(scoreView, i+1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
             scoreView.setText(String.valueOf(score[i]));
             switch (game.getRole(i)){
                 case NEUTRAL:
