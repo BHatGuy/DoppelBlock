@@ -39,6 +39,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         Game game = table.getGames().get(position);
         Integer[] score = table.getScore(game);
         int gameIndex = table.getGameIndex(game);
+        int pc = game.getPlayerCount();
 
         holder.item = game;
         holder.gameNumberView.setText(String.valueOf(gameIndex));
@@ -64,7 +65,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         holder.stuffed = true;
 
         holder.scoreView.setText(String.valueOf(game.getScore()));
-        if((gameIndex-1) % 8 < 4){
+        if((gameIndex-1) % (2*pc) < pc){
             holder.container.setBackgroundColor(holder.view.getResources().getColor(R.color.chartBackground1));
         } else {
             holder.container.setBackgroundColor(holder.view.getResources().getColor(R.color.chartBackground2));
