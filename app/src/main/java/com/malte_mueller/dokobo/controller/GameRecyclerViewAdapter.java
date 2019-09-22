@@ -3,10 +3,16 @@ package com.malte_mueller.dokobo.controller;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.malte_mueller.dokobo.R;
@@ -61,6 +67,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
                     scoreView.setTextColor(holder.view.getResources().getColor(R.color.winner));
                     break;
             }
+            scoreView.setOnClickListener(new MenuListener(game, table));
         }
         holder.stuffed = true;
 
@@ -71,11 +78,48 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             holder.container.setBackgroundColor(holder.view.getResources().getColor(R.color.chartBackground2));
 
         }
+        holder.scoreView.setOnClickListener(new MenuListener(game, table));
+
     }
 
     @Override
     public int getItemCount() {
         return table.getGames().size();
+    }
+
+    class MenuListener implements View.OnClickListener{
+        Game game;
+        Table table;
+
+        MenuListener(Game g, Table t){
+            game = g;
+            table = t;
+        }
+
+        @Override
+        public void onClick(View v) {
+            PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+            popupMenu.getMenuInflater().inflate(R.menu.menu_game, popupMenu.getMenu());
+
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.edit_game:
+                            break;
+                        case R.id.delete_game:
+                            table.deleteGame(game);
+                            GameRecyclerViewAdapter.this.notifyDataSetChanged();
+                            break;
+                    }
+                    return true;
+                }
+            });
+
+            popupMenu.show();
+
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
