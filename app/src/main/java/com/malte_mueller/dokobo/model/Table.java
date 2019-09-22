@@ -40,6 +40,15 @@ public class Table implements Serializable {
         calculateScore();
     }
 
+    public void deleteGame(Game g){
+        games.remove(g);
+        calculateScore();
+    }
+
+    public void updateGame(Game g){
+        calculateScore();
+    }
+
     private void calculateScore(){
         if (scores == null) scores = new ArrayList<>();
         scores.clear(); //each score is being calculated again
@@ -99,6 +108,10 @@ public class Table implements Serializable {
 
     public int getGameIndex(Game game) {
         return games.indexOf(game) + 1;
+    }
+
+    public Game getGame(int i){
+        return games.get(i);
     }
 
     public Integer[] getScore(Game game) {

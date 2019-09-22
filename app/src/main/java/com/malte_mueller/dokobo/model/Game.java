@@ -106,4 +106,12 @@ public class Game implements Serializable {
     public int getPlayerCount(){
         return roles.length;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setRole(int i, Role role) {
+        this.roles[i] = role;
+    }
 }
