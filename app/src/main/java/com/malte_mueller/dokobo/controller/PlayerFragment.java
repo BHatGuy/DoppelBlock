@@ -1,14 +1,14 @@
 package com.malte_mueller.dokobo.controller;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -19,7 +19,7 @@ import com.malte_mueller.dokobo.R;
  */
 public class PlayerFragment extends Fragment {
 
-    private ImageButton deletBtn;
+    private ImageButton deleteBtn;
     private EditText etName;
 
     public PlayerFragment() {
@@ -36,9 +36,9 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        deletBtn = getView().findViewById(R.id.btn_delete_player);
+        deleteBtn = getView().findViewById(R.id.btn_delete_player);
         etName = getView().findViewById(R.id.et_pName);
-        deletBtn.setOnClickListener(new View.OnClickListener() {
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction()
@@ -46,6 +46,13 @@ public class PlayerFragment extends Fragment {
 
             }
         });
+
+    }
+
+    public void setFocus(Activity activity){
+        if(etName.requestFocus()) {
+            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
     public String getName(){

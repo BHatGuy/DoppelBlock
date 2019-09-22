@@ -42,7 +42,6 @@ public class TableInputActivity extends AppCompatActivity {
         fragments.add(fragment);
         fragmentTransaction.add(R.id.ll_players, fragment);
         fragmentTransaction.commit();
-
     }
 
     public void onSubmit(View v) {
