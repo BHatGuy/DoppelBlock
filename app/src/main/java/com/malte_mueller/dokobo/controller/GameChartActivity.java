@@ -42,7 +42,7 @@ public class GameChartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new GameRecyclerViewAdapter(tableManager.getActiveTable());
+        mAdapter = new GameRecyclerViewAdapter(this, tableManager.getActiveTable());
         recyclerView.setAdapter(mAdapter);
 
         LinearLayout headline = findViewById(R.id.ll_headline);
@@ -71,6 +71,9 @@ public class GameChartActivity extends AppCompatActivity {
     public void onAddGameClicked(View v){
         //Create Intend to start the GameChartActivity
         Intent intent = new Intent(this, GameInputActivity.class);
+        Bundle b = new Bundle();
+        b.putBoolean("edit", false);
+        intent.putExtras(b);
         startActivity(intent);
 
     }

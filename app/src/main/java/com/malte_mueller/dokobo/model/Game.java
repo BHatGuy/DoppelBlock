@@ -114,4 +114,8 @@ public class Game implements Serializable {
     public void setRole(int i, Role role) {
         this.roles[i] = role;
     }
+
+    public void setRoles(Role[] roles) {
+        this.roles = roles;
+    }
 }

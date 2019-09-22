@@ -107,7 +107,7 @@ public class Table implements Serializable {
     }
 
     public int getGameIndex(Game game) {
-        return games.indexOf(game) + 1;
+        return games.indexOf(game);
     }
 
     public Game getGame(int i){

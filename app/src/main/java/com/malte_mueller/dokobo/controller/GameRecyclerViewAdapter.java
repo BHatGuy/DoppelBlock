@@ -1,6 +1,8 @@
 package com.malte_mueller.dokobo.controller;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,9 +29,11 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
 
     private final Table table;
     //private final OnListFragmentInteractionListener mListener;
+    private final Context context;
 
-    GameRecyclerViewAdapter(Table table) {
+    GameRecyclerViewAdapter(Context context, Table table) {
         this.table = table;
+        this.context = context;
         //mListener = listener;
     }
 
@@ -44,7 +48,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Game game = table.getGames().get(position);
         Integer[] score = table.getScore(game);
-        int gameIndex = table.getGameIndex(game);
+        int gameIndex = table.getGameIndex(game) + 1;
         int pc = game.getPlayerCount();
 
         holder.item = game;
@@ -104,6 +108,13 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()){
                         case R.id.edit_game:
+                            Intent intent = new Intent(context, GameInputActivity.class);
+                            Bundle b = new Bundle();
+                            b.putBoolean("edit", true);
+                            b.putInt("game", table.getGameIndex(game));
+                            intent.putExtras(b);
+                            context.startActivity(intent);
+                            //TODO refresh?
                             break;
                         case R.id.delete_game:
                             table.deleteGame(game);

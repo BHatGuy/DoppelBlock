@@ -2,6 +2,7 @@ package com.malte_mueller.dokobo.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +24,23 @@ public class GameInputActivity extends AppCompatActivity {
     private EditText scoreInput;
     private ResultButton[] playerButtons;
     private TableManager tableManager;
+    private boolean edit=false;
+    private Game editGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_input);
         tableManager = TableManager.getInstance();
+
+        Bundle b = getIntent().getExtras();
+        if(b != null)
+            edit = b.getBoolean("edit");
+        if(edit){
+            editGame = tableManager.getActiveTable().getGame(b.getInt("game"));
+
+            Log.d("foo", "onCreate: "+ b.getInt("game"));
+        }
 
         LinearLayout ll = findViewById(R.id.ll_winBtns);
 
@@ -54,6 +66,15 @@ public class GameInputActivity extends AppCompatActivity {
         if(scoreInput.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+
+        // if edeting fill old data
+        if (edit){
+           for(int i = 0; i < playerButtons.length; i++){
+               playerButtons[i].setState(editGame.getRole(i));
+           }
+           scoreInput.setText(String.valueOf(editGame.getScore()));
+        }
+
     }
 
     public void onGameSubmit(View view) {
@@ -68,9 +89,14 @@ public class GameInputActivity extends AppCompatActivity {
             roles[i] = playerButtons[i].getState();
         }
 
-        Game g = new Game(score, roles);
-        tableManager.getActiveTable().addGame(g);
-        tableManager.saveTables(getApplicationContext());
+        if (edit){
+            editGame.setScore(score);
+            editGame.setRoles(roles);
+        } else {
+            Game g = new Game(score, roles);
+            tableManager.getActiveTable().addGame(g);
+            tableManager.saveTables(getApplicationContext());
+        }
         finish();
     }
 }

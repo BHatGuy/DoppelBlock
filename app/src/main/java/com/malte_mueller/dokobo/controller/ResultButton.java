@@ -60,4 +60,7 @@ public class ResultButton extends android.support.v7.widget.AppCompatButton {
         return state;
     }
 
+    public void setState(Game.Role state) {
+        changeState(state);
+    }
 }
