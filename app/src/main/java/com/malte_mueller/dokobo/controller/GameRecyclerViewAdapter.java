@@ -49,12 +49,10 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
 
         holder.item = game;
         holder.gameNumberView.setText(String.valueOf(gameIndex));
-        LayoutInflater inflater = (LayoutInflater) holder.view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        holder.initViews(game.getPlayerCount());
         for (int i = 0; i < score.length; i++){
-            if(holder.stuffed) continue;
-            TextView scoreView = (TextView) inflater.inflate(R.layout.textview_score, null);
-            holder.container.addView(scoreView, i+1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
+            TextView scoreView = holder.pScoreViews[i];
             scoreView.setText(String.valueOf(score[i]));
             switch (game.getRole(i)){
                 case NEUTRAL:
@@ -69,7 +67,6 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             }
             scoreView.setOnClickListener(new MenuListener(game, table));
         }
-        holder.stuffed = true;
 
         holder.scoreView.setText(String.valueOf(game.getScore()));
         if((gameIndex-1) % (2*pc) < pc){
@@ -111,6 +108,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
                         case R.id.delete_game:
                             table.deleteGame(game);
                             GameRecyclerViewAdapter.this.notifyDataSetChanged();
+                            //TODO undo snackbar
                             break;
                     }
                     return true;
@@ -128,7 +126,7 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
         final LinearLayout container;
         final TextView scoreView;
         Game item;
-        boolean stuffed = false;
+        TextView[] pScoreViews;
 
         ViewHolder(View view) {
             super(view);
@@ -136,6 +134,17 @@ public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerVi
             gameNumberView = view.findViewById(R.id.game_number);
             scoreView = view.findViewById(R.id.score);
             container = view.findViewById(R.id.ll_game);
+        }
+
+        void initViews(int count){
+            if (pScoreViews != null) return;
+            pScoreViews = new TextView[count];
+            LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            for (int i = 0; i < count; i++) {
+                TextView scoreView = (TextView) inflater.inflate(R.layout.textview_score, null);
+                container.addView(scoreView, i + 1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 4));
+                pScoreViews[i] = scoreView;
+            }
         }
     }
 }
