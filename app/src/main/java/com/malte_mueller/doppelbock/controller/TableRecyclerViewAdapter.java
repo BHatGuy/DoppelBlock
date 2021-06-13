@@ -1,6 +1,8 @@
 package com.malte_mueller.doppelbock.controller;
 
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.malte_mueller.doppelbock.R;
-import com.malte_mueller.doppelbock.model.Game;
 import com.malte_mueller.doppelbock.model.Table;
 
 import java.util.List;
@@ -48,37 +49,45 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
         holder.titleView.setText(table.getName());
         holder.tvPlayers.setText(String.join(", ", table.getPlayers()));
 
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    mListener.onListFragmentInteraction(holder.item);
-                }
+        holder.view.setOnClickListener(view -> {
+            if (null != mListener) {
+                mListener.onListFragmentInteraction(holder.item);
             }
         });
 
-        holder.btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    mListener.onShareClick(holder.item);
-                }
+        holder.btnShare.setOnClickListener(view -> {
+            if (null != mListener) {
+                mListener.onShareClick(holder.item);
             }
         });
 
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    mListener.onDeleteClick(holder.item);
-                }
+        holder.btnDelete.setOnClickListener(view -> {
+            if (null != mListener) {
+                mListener.onDeleteClick(holder.item);
             }
+        });
+
+        holder.btnEdit.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), TableInputActivity.class);
+            Bundle b = new Bundle();
+            b.putBoolean("edit", true);
+            b.putInt("table", position);
+            intent.putExtras(b);
+            view.getContext().startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    public interface OnListFragmentInteractionListener {
+        void onListFragmentInteraction(Table t);
+
+        void onDeleteClick(Table t);
+
+        void onShareClick(Table t);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -88,6 +97,7 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
         Table item;
         ImageButton btnDelete;
         ImageButton btnShare;
+        ImageButton btnEdit;
 
 
         ViewHolder(View view) {
@@ -96,13 +106,8 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
             titleView = view.findViewById(R.id.tw_title);
             btnDelete = view.findViewById(R.id.btnDeleteTable);
             btnShare = view.findViewById(R.id.btnShareTable);
+            btnEdit = view.findViewById(R.id.btn_table_edit);
             tvPlayers = view.findViewById(R.id.tv_players);
         }
-    }
-
-    public interface OnListFragmentInteractionListener{
-        void onListFragmentInteraction(Table t);
-        void onDeleteClick(Table t);
-        void onShareClick(Table t);
     }
 }

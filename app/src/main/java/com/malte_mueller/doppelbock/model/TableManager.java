@@ -92,7 +92,7 @@ public class TableManager{
         }
     }
 
-    public void importTable(Uri uri, Context context){
+        public void importTable(Uri uri, Context context){
         try {
             ContentResolver cr = context.getContentResolver();
             InputStream inputStream = cr.openInputStream(uri);
@@ -109,13 +109,15 @@ public class TableManager{
         }
     }
 
-    public void deleteTable(Table table, Context context){
-        tables.remove(table);
-        String filename = table.getName() + ".json";
+    public void deleteTable(String name, Context context){
+        String filename = name + ".json";
         File f = new File(context.getFilesDir(), filename);
         boolean res = f.delete();
-        Log.d(TAG, "deleteTable: " + res);
+    }
 
+    public void deleteTable(Table table, Context context){
+        tables.remove(table);
+        deleteTable(table.getName(), context);
     }
 
     public File getFile(Table table, Context context){

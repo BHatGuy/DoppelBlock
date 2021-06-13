@@ -102,8 +102,16 @@ public class Table implements Serializable {
         return players;
     }
 
+    public void setPlayers(String[] players) {
+        this.players = players;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getGameIndex(Game game) {

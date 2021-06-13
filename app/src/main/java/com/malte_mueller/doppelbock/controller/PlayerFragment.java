@@ -21,6 +21,7 @@ public class PlayerFragment extends Fragment {
 
     private ImageButton deleteBtn;
     private EditText etName;
+    private String tempName = "";
 
     public PlayerFragment() {
         // Required empty public constructor
@@ -38,6 +39,7 @@ public class PlayerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         deleteBtn = getView().findViewById(R.id.btn_delete_player);
         etName = getView().findViewById(R.id.et_pName);
+        etName.setText(tempName);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,5 +59,13 @@ public class PlayerFragment extends Fragment {
 
     public String getName(){
         return etName.getText().toString();
+    }
+
+    public void setName(String name) {
+        if (etName != null){
+            etName.setText(name);
+        } else {
+            tempName = name;
+        }
     }
 }

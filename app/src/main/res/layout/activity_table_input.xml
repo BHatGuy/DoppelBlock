@@ -75,6 +75,6 @@
         android:onClick="onSubmit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_baseline_check_24" />
 
 </android.support.constraint.ConstraintLayout>
