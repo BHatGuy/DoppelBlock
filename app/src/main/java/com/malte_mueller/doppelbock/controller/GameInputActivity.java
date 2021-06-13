@@ -1,4 +1,4 @@
-package com.malte_mueller.dokobo.controller;
+package com.malte_mueller.doppelbock.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,17 +7,13 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
-import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.Game;
-import com.malte_mueller.dokobo.model.TableManager;
-
-import java.util.zip.Inflater;
+import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelbock.model.Game;
+import com.malte_mueller.doppelbock.model.TableManager;
 
 public class GameInputActivity extends AppCompatActivity {
 

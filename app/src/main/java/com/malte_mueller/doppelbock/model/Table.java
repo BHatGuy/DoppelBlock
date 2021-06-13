@@ -1,12 +1,12 @@
-package com.malte_mueller.dokobo.model;
+package com.malte_mueller.doppelbock.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.malte_mueller.dokobo.model.Game.Role.LOSER;
-import static com.malte_mueller.dokobo.model.Game.Role.NEUTRAL;
-import static com.malte_mueller.dokobo.model.Game.Role.WINNER;
+import static com.malte_mueller.doppelbock.model.Game.Role.LOSER;
+import static com.malte_mueller.doppelbock.model.Game.Role.NEUTRAL;
+import static com.malte_mueller.doppelbock.model.Game.Role.WINNER;
 
 /**
  * This Class represents one Table. It has a set of played games and the Players.

@@ -1,4 +1,4 @@
-package com.malte_mueller.dokobo.controller;
+package com.malte_mueller.doppelbock.controller;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
@@ -7,11 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
-import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.Table;
-import com.malte_mueller.dokobo.model.TableManager;
+import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelbock.model.Table;
+import com.malte_mueller.doppelbock.model.TableManager;
 
 import java.util.ArrayList;
 import java.util.List;

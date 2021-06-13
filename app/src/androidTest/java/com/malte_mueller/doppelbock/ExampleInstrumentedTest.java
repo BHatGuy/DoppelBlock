@@ -1,4 +1,4 @@
-package com.malte_mueller.dokobo;
+package com.malte_mueller.doppelbock;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

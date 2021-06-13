@@ -1,7 +1,5 @@
-package com.malte_mueller.dokobo.controller;
+package com.malte_mueller.doppelbock.controller;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,15 +13,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.malte_mueller.dokobo.BuildConfig;
-import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.Table;
-import com.malte_mueller.dokobo.model.TableManager;
+import com.malte_mueller.doppelbock.BuildConfig;
+import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelbock.model.Table;
+import com.malte_mueller.doppelbock.model.TableManager;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class TableSelectActivity extends AppCompatActivity implements TableRecyclerViewAdapter.OnListFragmentInteractionListener{
     private static final String TAG = TableSelectActivity.class.getName();

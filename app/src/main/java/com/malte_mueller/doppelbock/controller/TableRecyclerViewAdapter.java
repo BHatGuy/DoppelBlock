@@ -1,4 +1,4 @@
-package com.malte_mueller.dokobo.controller;
+package com.malte_mueller.doppelbock.controller;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.Table;
+import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelbock.model.Table;
 
 import java.util.List;
 

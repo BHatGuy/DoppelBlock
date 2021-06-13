@@ -1,9 +1,8 @@
-package com.malte_mueller.dokobo.model;
+package com.malte_mueller.doppelbock.model;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -12,9 +11,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 

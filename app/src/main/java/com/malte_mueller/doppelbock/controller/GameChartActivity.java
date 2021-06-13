@@ -1,4 +1,4 @@
-package com.malte_mueller.dokobo.controller;
+package com.malte_mueller.doppelbock.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.malte_mueller.dokobo.R;
-import com.malte_mueller.dokobo.model.TableManager;
+import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelbock.model.TableManager;
 
 public class GameChartActivity extends AppCompatActivity {
     private static final String TAG = GameChartActivity.class.getName();
