@@ -1,5 +1,7 @@
 package com.malte_mueller.doppelbock.controller;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelbock.model.Game;
 import com.malte_mueller.doppelbock.model.Table;
 
 import java.util.List;
@@ -36,11 +39,14 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
         return new ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: " + holder.toString());
-        holder.item = mValues.get(position);
-        holder.titleView.setText(mValues.get(position).getName());
+        Table table = mValues.get(position);
+        holder.item = table;
+        holder.titleView.setText(table.getName());
+        holder.tvPlayers.setText(String.join(", ", table.getPlayers()));
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +84,7 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
     class ViewHolder extends RecyclerView.ViewHolder {
         final View view;
         final TextView titleView;
+        final TextView tvPlayers;
         Table item;
         ImageButton btnDelete;
         ImageButton btnShare;
@@ -89,6 +96,7 @@ public class TableRecyclerViewAdapter extends RecyclerView.Adapter<TableRecycler
             titleView = view.findViewById(R.id.tw_title);
             btnDelete = view.findViewById(R.id.btnDeleteTable);
             btnShare = view.findViewById(R.id.btnShareTable);
+            tvPlayers = view.findViewById(R.id.tv_players);
         }
     }
 
