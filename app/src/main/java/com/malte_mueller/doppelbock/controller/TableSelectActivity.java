@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.malte_mueller.doppelbock.BuildConfig;
@@ -60,6 +64,24 @@ public class TableSelectActivity extends AppCompatActivity implements TableRecyc
             handleViewIntent(intent);
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean res = super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_add){
+            onAddTable();
+            return true;
+        }
+        return res;
     }
 
     private void handleViewIntent(Intent intent){
@@ -128,7 +150,7 @@ public class TableSelectActivity extends AppCompatActivity implements TableRecyc
         }
     }
 
-    public void onAddTable(View v){
+    public void onAddTable(){
         Intent intent = new Intent(this, TableInputActivity.class);
         startActivity(intent);
     }
