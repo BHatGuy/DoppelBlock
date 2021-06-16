@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelblock.controller;
+package eu.maltemueller.doppelblock.controller;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,9 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.malte_mueller.doppelblock.R;
-import com.malte_mueller.doppelblock.model.Table;
-import com.malte_mueller.doppelblock.model.TableManager;
+import com.maltemueller.doppelblock.R;
+import eu.maltemueller.doppelblock.model.Table;
+import eu.maltemueller.doppelblock.model.TableManager;
 
 import java.util.ArrayList;
 import java.util.List;

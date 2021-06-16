@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelblock.controller;
+package eu.maltemueller.doppelblock.controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +14,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.malte_mueller.doppelblock.R;
-import com.malte_mueller.doppelblock.model.Game;
-import com.malte_mueller.doppelblock.model.TableManager;
+import com.maltemueller.doppelblock.R;
+import eu.maltemueller.doppelblock.model.Game;
+import eu.maltemueller.doppelblock.model.TableManager;
 
 public class GameInputActivity extends AppCompatActivity {
 

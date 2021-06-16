@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelblock;
+package eu.maltemueller.doppelblock;
 
 import org.junit.Test;
 

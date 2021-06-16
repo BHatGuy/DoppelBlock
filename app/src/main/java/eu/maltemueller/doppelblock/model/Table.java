@@ -1,12 +1,12 @@
-package com.malte_mueller.doppelblock.model;
+package eu.maltemueller.doppelblock.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.malte_mueller.doppelblock.model.Game.Role.LOSER;
-import static com.malte_mueller.doppelblock.model.Game.Role.NEUTRAL;
-import static com.malte_mueller.doppelblock.model.Game.Role.WINNER;
+import static eu.maltemueller.doppelblock.model.Game.Role.LOSER;
+import static eu.maltemueller.doppelblock.model.Game.Role.NEUTRAL;
+import static eu.maltemueller.doppelblock.model.Game.Role.WINNER;
 
 /**
  * This Class represents one Table. It has a set of played games and the Players.

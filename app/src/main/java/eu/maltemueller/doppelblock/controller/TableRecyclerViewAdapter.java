@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelblock.controller;
+package eu.maltemueller.doppelblock.controller;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.malte_mueller.doppelblock.R;
-import com.malte_mueller.doppelblock.model.Table;
+import com.maltemueller.doppelblock.R;
+import eu.maltemueller.doppelblock.model.Table;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelblock.controller;
+package eu.maltemueller.doppelblock.controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.malte_mueller.doppelblock.BuildConfig;
-import com.malte_mueller.doppelblock.R;
-import com.malte_mueller.doppelblock.model.Table;
-import com.malte_mueller.doppelblock.model.TableManager;
+import com.maltemueller.doppelblock.BuildConfig;
+import com.maltemueller.doppelblock.R;
+import eu.maltemueller.doppelblock.model.Table;
+import eu.maltemueller.doppelblock.model.TableManager;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelblock;
+package eu.maltemueller.doppelblock;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
