@@ -1,11 +1,15 @@
 package com.malte_mueller.doppelbock.controller;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -44,6 +48,24 @@ public class TableInputActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menue_save, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean res = super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_save){
+            onSubmit();
+            return true;
+        }
+        return res;
+    }
+
     public void onAddPlayer(View v){
         addPlayerFragment();
     }
@@ -60,7 +82,7 @@ public class TableInputActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void onSubmit(View v) {
+    public void onSubmit() {
         //TODO: dynamic for more players?
         String[] players = new String[fragments.size()];
 

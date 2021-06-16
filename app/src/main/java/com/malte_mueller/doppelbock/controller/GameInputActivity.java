@@ -1,10 +1,14 @@
 package com.malte_mueller.doppelbock.controller;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -55,7 +59,7 @@ public class GameInputActivity extends AppCompatActivity {
         scoreInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                onGameSubmit(v);
+                onGameSubmit();
                 return false;
             }
         });
@@ -73,12 +77,30 @@ public class GameInputActivity extends AppCompatActivity {
 
     }
 
-    public void onGameSubmit(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menue_save, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean res = super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_save){
+            onGameSubmit();
+            return true;
+        }
+        return res;
+    }
+
+    public void onGameSubmit() {
         //Create Game
         //TODO check if it is valid
         String text = scoreInput.getText().toString();
         if (text.length() == 0) return; //TODO toast or snack-bar
-        int score = Integer.valueOf(text);
+        int score = Integer.parseInt(text);
         Game.Role[] roles = new Game.Role[tableManager.getActiveTable().getPlayers().length];
 
         for (int i = 0; i < roles.length; i++){
