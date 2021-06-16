@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelbock.controller;
+package com.malte_mueller.doppelblock.controller;
 
 
 import android.app.Activity;
@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelblock.R;
 
 /**
  * A simple {@link Fragment} subclass.

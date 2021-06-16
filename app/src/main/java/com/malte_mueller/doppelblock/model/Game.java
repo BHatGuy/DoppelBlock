@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelbock.model;
+package com.malte_mueller.doppelblock.model;
 
 import java.io.Serializable;
 

@@ -1,11 +1,11 @@
-package com.malte_mueller.doppelbock.controller;
+package com.malte_mueller.doppelblock.controller;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.malte_mueller.doppelbock.R;
-import com.malte_mueller.doppelbock.model.Game;
+import com.malte_mueller.doppelblock.R;
+import com.malte_mueller.doppelblock.model.Game;
 
 
 public class ResultButton extends android.support.v7.widget.AppCompatButton {

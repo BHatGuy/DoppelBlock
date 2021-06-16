@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelbock.controller;
+package com.malte_mueller.doppelblock.controller;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -6,16 +6,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.malte_mueller.doppelbock.R;
-import com.malte_mueller.doppelbock.model.Table;
-import com.malte_mueller.doppelbock.model.TableManager;
+import com.malte_mueller.doppelblock.R;
+import com.malte_mueller.doppelblock.model.Table;
+import com.malte_mueller.doppelblock.model.TableManager;
 
 import java.util.ArrayList;
 import java.util.List;

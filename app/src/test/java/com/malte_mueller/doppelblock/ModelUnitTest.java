@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelbock;
+package com.malte_mueller.doppelblock;
 
 import org.junit.Test;
 

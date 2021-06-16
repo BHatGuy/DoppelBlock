@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelbock.controller;
+package com.malte_mueller.doppelblock.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.malte_mueller.doppelbock.R;
+import com.malte_mueller.doppelblock.R;
 
-import com.malte_mueller.doppelbock.model.Game;
-import com.malte_mueller.doppelbock.model.Table;
+import com.malte_mueller.doppelblock.model.Game;
+import com.malte_mueller.doppelblock.model.Table;
 
 
 public class GameRecyclerViewAdapter extends RecyclerView.Adapter<GameRecyclerViewAdapter.ViewHolder> {

@@ -1,4 +1,4 @@
-package com.malte_mueller.doppelbock.controller;
+package com.malte_mueller.doppelblock.controller;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,8 +14,8 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.malte_mueller.doppelbock.R;
-import com.malte_mueller.doppelbock.model.TableManager;
+import com.malte_mueller.doppelblock.R;
+import com.malte_mueller.doppelblock.model.TableManager;
 
 public class GameChartActivity extends AppCompatActivity {
     private static final String TAG = GameChartActivity.class.getName();
