@@ -8,7 +8,7 @@ import com.maltemueller.doppelblock.R;
 import eu.maltemueller.doppelblock.model.Game;
 
 
-public class ResultButton extends android.support.v7.widget.AppCompatButton {
+public class ResultButton extends androidx.appcompat.widget.AppCompatButton {
 
 
     private Game.Role state;
